@@ -42,14 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function manager(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function manager(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasMany(Manager::class);
+        return $this->hasOne(Manager::class);
     }
 
-    public function apprentice(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function apprentice(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasMany(Apprentice::class);
+        return $this->hasOne(Apprentice::class);
     }
 
     /**

@@ -16,12 +16,26 @@ class RegistrationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_new_users_can_register(): void
+    public function test_new_apprentice_can_register(): void
     {
         $response = $this->post('/register', [
             'role' => 'apprentice',
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => fake()->unique()->safeEmail(),
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    public function test_new_manager_can_register(): void
+    {
+        $response = $this->post('/register', [
+            'role' => 'manager',
+            'name' => 'Test User',
+            'email' => fake()->unique()->safeEmail(),
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);

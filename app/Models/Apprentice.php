@@ -10,4 +10,16 @@ class Apprentice extends Model
     use HasFactory;
 
      protected $fillable = ['user_id'];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Module::class)->withPivot('start_date', 'end_date', 'grade');
+    }
 }
+
+

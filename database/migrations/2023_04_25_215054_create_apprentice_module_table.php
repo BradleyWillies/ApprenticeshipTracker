@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('apprentice_modules', function (Blueprint $table) {
+        Schema::create('apprentice_module', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('apprentice_id')->constrained();
             $table->foreignId('module_id')->constrained();
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->integer('grade');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->integer('grade')->nullable();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apprentice_modules');
+        Schema::dropIfExists('apprentice_module');
     }
 };

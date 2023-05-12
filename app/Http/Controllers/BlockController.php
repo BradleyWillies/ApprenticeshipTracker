@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Blocks;
+use App\Models\Block;
 use Illuminate\Http\Request;
 
 class BlockController extends Controller
@@ -41,10 +41,10 @@ class BlockController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Blocks  $blocks
+     * @param  \App\Models\Block  $blocks
      * @return \Illuminate\Http\Response
      */
-    public function show(Blocks $blocks)
+    public function show(Block $blocks)
     {
         //
     }
@@ -52,10 +52,10 @@ class BlockController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Blocks  $blocks
+     * @param  \App\Models\Block  $blocks
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blocks $blocks)
+    public function edit(Block $blocks)
     {
         //
     }
@@ -64,10 +64,10 @@ class BlockController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blocks  $blocks
+     * @param  \App\Models\Block  $blocks
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blocks $blocks)
+    public function update(Request $request, Block $blocks)
     {
         //
     }
@@ -75,10 +75,10 @@ class BlockController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Blocks  $blocks
+     * @param  \App\Models\Block  $blocks
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blocks $blocks)
+    public function destroy(Block $blocks)
     {
         //
     }

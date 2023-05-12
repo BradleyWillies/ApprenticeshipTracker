@@ -2,6 +2,18 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <!-- Role -->
+        <div class="space-y-1">
+            <div class="flex gap-2 items-center">
+                <x-radio-input name="role" id="apprentice" value="apprentice" checked/>
+                <x-input-label for="apprentice" value="Apprentice" />
+            </div>
+            <div class="flex gap-2 items-center">
+                <x-radio-input name="role" id="manager" value="manager"/>
+                <x-input-label for="manager" value="Manager" />
+            </div>
+        </div>
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Modules;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
@@ -41,10 +41,10 @@ class ModuleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Modules  $modules
+     * @param  \App\Models\Module  $modules
      * @return \Illuminate\Http\Response
      */
-    public function show(Modules $modules)
+    public function show(Module $modules)
     {
         //
     }
@@ -52,10 +52,10 @@ class ModuleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Modules  $modules
+     * @param  \App\Models\Module  $modules
      * @return \Illuminate\Http\Response
      */
-    public function edit(Modules $modules)
+    public function edit(Module $modules)
     {
         //
     }
@@ -64,10 +64,10 @@ class ModuleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Modules  $modules
+     * @param  \App\Models\Module  $modules
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modules $modules)
+    public function update(Request $request, Module $modules)
     {
         //
     }
@@ -75,10 +75,10 @@ class ModuleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Modules  $modules
+     * @param  \App\Models\Module  $modules
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modules $modules)
+    public function destroy(Module $modules)
     {
         //
     }

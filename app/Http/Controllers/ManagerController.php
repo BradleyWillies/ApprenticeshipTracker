@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Managers;
+use App\Models\Manager;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -41,10 +41,10 @@ class ManagerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Managers  $managers
+     * @param  \App\Models\Manager  $managers
      * @return \Illuminate\Http\Response
      */
-    public function show(Managers $managers)
+    public function show(Manager $managers)
     {
         //
     }
@@ -52,10 +52,10 @@ class ManagerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Managers  $managers
+     * @param  \App\Models\Manager  $managers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Managers $managers)
+    public function edit(Manager $managers)
     {
         //
     }
@@ -64,10 +64,10 @@ class ManagerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Managers  $managers
+     * @param  \App\Models\Manager  $managers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Managers $managers)
+    public function update(Request $request, Manager $managers)
     {
         //
     }
@@ -75,10 +75,10 @@ class ManagerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Managers  $managers
+     * @param  \App\Models\Manager  $managers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Managers $managers)
+    public function destroy(Manager $managers)
     {
         //
     }

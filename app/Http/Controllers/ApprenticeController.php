@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Apprentices;
+use App\Models\Apprentice;
 use Illuminate\Http\Request;
 
 class ApprenticeController extends Controller
@@ -41,10 +41,10 @@ class ApprenticeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Apprentices  $apprentices
+     * @param  \App\Models\Apprentice  $apprentices
      * @return \Illuminate\Http\Response
      */
-    public function show(Apprentices $apprentices)
+    public function show(Apprentice $apprentices)
     {
         //
     }
@@ -52,10 +52,10 @@ class ApprenticeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Apprentices  $apprentices
+     * @param  \App\Models\Apprentice  $apprentices
      * @return \Illuminate\Http\Response
      */
-    public function edit(Apprentices $apprentices)
+    public function edit(Apprentice $apprentices)
     {
         //
     }
@@ -64,10 +64,10 @@ class ApprenticeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Apprentices  $apprentices
+     * @param  \App\Models\Apprentice  $apprentices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apprentices $apprentices)
+    public function update(Request $request, Apprentice $apprentices)
     {
         //
     }
@@ -75,10 +75,10 @@ class ApprenticeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Apprentices  $apprentices
+     * @param  \App\Models\Apprentice  $apprentices
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Apprentices $apprentices)
+    public function destroy(Apprentice $apprentices)
     {
         //
     }

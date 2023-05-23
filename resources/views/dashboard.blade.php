@@ -5,6 +5,12 @@
         </h2>
     </x-slot>
 
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-white leading-tight">
+            {{ __('Apprentice Table') }}
+        </h2>
+    </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -20,16 +26,11 @@
         </div>
     </div>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Apprentice Table') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 text-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+            <div class="overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="p-6 sm:px-20  border-b border-gray-200">
                     <div class="mt-8 text-2xl">
                         <table class="table-auto">
                             <thead>
@@ -45,7 +46,7 @@
                             @foreach ($apprenticeData->modules as $apprenticeModule)
                                 <tr>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->block_id }}</td>
-                                    <td class="border px-4 py-2">{{ $apprenticeModule->name }}</td>
+                                    <td class="border px-4 py-2"><x-link href="{{route('apprentice_module.edit', $apprenticeModule)}}">{{ $apprenticeModule->name }}</x-link></td>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->pivot->grade }}</td>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->pivot->start_date }}</td>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->pivot->end_date }}</td>

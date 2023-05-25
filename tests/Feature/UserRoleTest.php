@@ -10,6 +10,9 @@ use Tests\TestCase;
 
 class UserRoleTest extends TestCase
 {
+    // reset database after testing
+    use RefreshDatabase;
+
     /** @test */
     public function it_can_check_if_user_is_manager()
     {

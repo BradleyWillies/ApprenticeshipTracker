@@ -9,6 +9,8 @@ use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
+    // reset database after testing
+    use RefreshDatabase;
 
     public function test_login_screen_can_be_rendered(): void
     {

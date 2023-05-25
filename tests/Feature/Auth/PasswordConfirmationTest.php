@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase
 {
+    // reset database after testing
+    use RefreshDatabase;
 
     public function test_confirm_password_screen_can_be_rendered(): void
     {

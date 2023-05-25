@@ -6,13 +6,22 @@ use App\Models\ApprenticeModule;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class ApprenticeModuleTest extends TestCase
 {
-    /** @test */
-    public function it_updates_apprentice_module_with_valid_data()
+    // reset database after testing
+    use RefreshDatabase;
+
+    public function test_it_updates_apprentice_module_with_valid_data()
     {
+        // Seed database
+        Artisan::call('db:seed');
+
+        // Import module grades
+        Artisan::call('import:module-grades');
+
         // Create an ApprenticeModule
         $apprenticeModule = ApprenticeModule::first();
 
@@ -41,9 +50,17 @@ class ApprenticeModuleTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_fails_to_update_apprentice_module_with_invalid_data()
+    public function test_it_fails_to_update_apprentice_module_with_invalid_data()
     {
+        // Refresh the database
+        Artisan::call('migrate:refresh');
+
+        // Seed database
+        Artisan::call('db:seed');
+
+        // Import module grades
+        Artisan::call('import:module-grades');
+
         // Create an ApprenticeModule
         $apprenticeModule = ApprenticeModule::first();
 

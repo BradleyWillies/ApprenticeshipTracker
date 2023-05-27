@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Apprentice\DashboardController as ApprenticeDashboard;
 use App\Http\Controllers\ApprenticeModuleController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Manager\DashboardController as ManagerDashboard;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/modules', [ApprenticeDashboard::class, 'index'])->name('apprenticeDashboard');
+    Route::get('/apprentices', [ManagerDashboard::class, 'index'])->name('managerDashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

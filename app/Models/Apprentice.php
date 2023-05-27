@@ -21,7 +21,20 @@ class Apprentice extends Model
 
     public function modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Module::class)->withPivot('start_date', 'end_date', 'grade');
+        return $this->belongsToMany(Module::class)->withPivot('start_date', 'end_date', 'grade', 'id');
+    }
+
+    public function managers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Manager::class);
+    }
+
+    public function getProgrammeStartDate(){
+        return $this->modules()->orderByDesc('pivot_start_date')->first()->pivot->start_date;
+    }
+
+    public function getProgrammeEndDate(){
+        return $this->modules()->orderByDesc('pivot_end_date')->first()->pivot->end_date;
     }
 }
 

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Apprentice;
 
+use App\Http\Controllers\Controller;
 use App\Models\Apprentice;
+use App\Models\ApprenticeModule;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
@@ -15,12 +17,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $apprenticeData = Apprentice::with(['modules' => function($query){
-            $query->orderBy('pivot_start_date');
-        }])
-            ->where('user_id', auth()->user()->id)
-            ->first();
-        return view('dashboard', compact('apprenticeData'));
+        $apprenticeModuleData = ApprenticeModule::orderBy('start_date')
+            ->where('apprentice_id', auth()->user()->apprentice->id)
+            ->get();
+
+        return view('apprentice/dashboard', compact('apprenticeModuleData'));
     }
 
     /**

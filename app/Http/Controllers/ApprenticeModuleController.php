@@ -70,7 +70,7 @@ class ApprenticeModuleController extends Controller
             'grade' => $request->get('grade'),
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Module details updated');
+        return redirect()->route('modules')->with('success', 'Module details updated');
     }
 
     /**

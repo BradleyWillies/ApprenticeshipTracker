@@ -15,4 +15,9 @@ class Manager extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function apprentices(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Apprentice::class);
+    }
 }

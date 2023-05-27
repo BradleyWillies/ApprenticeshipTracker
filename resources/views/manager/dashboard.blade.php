@@ -32,28 +32,28 @@
             <div class="overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20  border-b border-gray-200">
                     <div class="mt-8 text-2xl">
+                        @if ($apprentices)
                         <table class="table-auto">
                             <thead>
                             <tr>
-                                <th class="px-4 py-2">Block</th>
-                                <th class="px-4 py-2">Module</th>
-                                <th class="px-4 py-2">Grade</th>
-                                <th class="px-4 py-2">Start Date</th>
-                                <th class="px-4 py-2">End Date</th>
+                                <th class="px-4 py-2">Apprentice Name</th>
+                                <th class="px-4 py-2">Programme Start Date</th>
+                                <th class="px-4 py-2">Programme End Date</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($apprenticeData->modules as $apprenticeModule)
+                            @foreach ($apprentices as $apprentice)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $apprenticeModule->block_id }}</td>
-                                    <td class="border px-4 py-2"><x-link href="{{route('apprentice_module.edit', $apprenticeModule)}}">{{ $apprenticeModule->code.' '.$apprenticeModule->title }}</x-link></td>
-                                    <td class="border px-4 py-2">{{ $apprenticeModule->pivot->grade }}</td>
-                                    <td class="border px-4 py-2">{{ $apprenticeModule->pivot->start_date }}</td>
-                                    <td class="border px-4 py-2">{{ $apprenticeModule->pivot->end_date }}</td>
+                                    <td class="border px-4 py-2">{{ $apprentice->user->name }}</td>
+                                    <td class="border px-4 py-2">{{ $apprentice->getProgrammeStartDate() }}</td>
+                                    <td class="border px-4 py-2">{{ $apprentice->getProgrammeEndDate() }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        @else
+                            No apprentices assigned to your account.
+                        @endif
                     </div>
                 </div>
             </div>

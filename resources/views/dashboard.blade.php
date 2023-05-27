@@ -46,7 +46,7 @@
                             @foreach ($apprenticeData->modules as $apprenticeModule)
                                 <tr>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->block_id }}</td>
-                                    <td class="border px-4 py-2"><x-link href="{{route('apprentice_module.edit', $apprenticeModule)}}">{{ $apprenticeModule->name }}</x-link></td>
+                                    <td class="border px-4 py-2"><x-link href="{{route('apprentice_module.edit', $apprenticeModule)}}">{{ $apprenticeModule->code.' '.$apprenticeModule->title }}</x-link></td>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->pivot->grade }}</td>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->pivot->start_date }}</td>
                                     <td class="border px-4 py-2">{{ $apprenticeModule->pivot->end_date }}</td>

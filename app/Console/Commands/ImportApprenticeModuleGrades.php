@@ -29,6 +29,6 @@ class ImportApprenticeModuleGrades extends Command
      */
     public function handle()
     {
-        Excel::import(new ApprenticeModuleGradesImport(), 'Apprentice Grade Data.csv', 'import');
+        Excel::import(new ApprenticeModuleGradesImport(), 'Exam_Report.csv', 'import');
     }
 }

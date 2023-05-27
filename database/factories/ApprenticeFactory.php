@@ -20,7 +20,8 @@ class ApprenticeFactory extends Factory
     {
         $user = User::factory()->create();
         return [
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'candidate_number' => fake()->numerify('######'),
         ];
     }
 }

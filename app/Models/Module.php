@@ -15,7 +15,8 @@ class Module extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'title',
+        'code',
         'block_id',
     ];
 

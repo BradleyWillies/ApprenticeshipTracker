@@ -7,7 +7,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight ">
-            {{$apprenticeModule->module->name}}
+            {{$apprenticeModule->module->code.' '.$apprenticeModule->module->title}}
         </h2>
         <x-link href="{{url()->previous()}}" class="text-sm pt-2 inline-block">< Dashboard</x-link>
     </x-slot>

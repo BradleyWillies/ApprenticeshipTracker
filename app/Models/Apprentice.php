@@ -9,7 +9,10 @@ class Apprentice extends Model
 {
     use HasFactory;
 
-     protected $fillable = ['user_id'];
+     protected $fillable = [
+         'user_id',
+         'candidate_number',
+     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

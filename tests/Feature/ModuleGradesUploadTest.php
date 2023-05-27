@@ -26,15 +26,15 @@ class ModuleGradesUploadTest extends TestCase
         // Assert that the ApprenticeModule model was updated in the database
         $this->assertDatabaseHas('apprentice_module', [
             'apprentice_id' => '1',
-            'module_id' => '1',
-            'grade' => '95',
+            'module_id' => '12',
+            'grade' => '82',
         ]);
 
         // Assert that the ApprenticeModule model was updated in the database
         $this->assertDatabaseHas('apprentice_module', [
             'apprentice_id' => '1',
-            'module_id' => '5',
-            'grade' => '68',
+            'module_id' => '31',
+            'grade' => '74',
         ]);
     }
 }

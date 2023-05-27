@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
         // create apprentice associated with user above
         Apprentice::factory()->create([
             'user_id' => $apprenticeUser->id,
+            'candidate_number' => '123456',
         ]);
     }
 }

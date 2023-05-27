@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained();
+            $table->string('candidate_number')->unique();
         });
     }
 

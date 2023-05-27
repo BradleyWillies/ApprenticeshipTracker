@@ -7,6 +7,7 @@ use App\Models\Module;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use function PHPUnit\Framework\throwException;
 
@@ -23,20 +24,15 @@ class ApprenticeModuleGradesImport implements ToCollection
 
             try {
                 // validate grade
-                if(!(is_int($row[2]) && $row[2] >= 0 && $row[2] <= 100)) {
+                if(!(is_int($row[9]) && $row[9] >= 0 && $row[9] <= 100)) {
                     throw new \Exception('Grade is invalid');
                 }
 
-                $module = Module::firstOrCreate([
-                    'name' => $row[1],
-                    'block_id' => 1,
-                ]);
+                $module = Module::where('code', Str::after($row[2], '#'))->first();
 
-                $apprentice = Apprentice::whereHas('user', function(Builder $query) use ($row){
-                    $query->where('name', $row[0]);
-                })->firstOrFail();
+                $apprentice = Apprentice::where('candidate_number', Str::after($row[6], '#'))->first();
 
-                $apprentice->modules()->attach($module, ['grade'=>$row[2]]);
+                $apprentice->modules()->attach($module, ['grade'=>$row[9]]);
             }
             catch (\Exception $e) {
                 Log::error($e->getMessage());

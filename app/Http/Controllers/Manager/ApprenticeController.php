@@ -1,9 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Manager;
 
+use App\Http\Controllers\Controller;
 use App\Models\Apprentice;
+use App\Models\ApprenticeManager;
+use App\Models\ApprenticeModule;
+use App\Models\Manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApprenticeController extends Controller
 {
@@ -41,12 +46,24 @@ class ApprenticeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Apprentice  $apprentices
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Apprentice  $apprentice
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Apprentice $apprentices)
+    public function show(Apprentice $apprentice)
     {
-        //
+        // check that the current manager has access to view the apprentice's details
+        $apprenticeManager = ApprenticeManager::where([
+            ['apprentice_id', '=', $apprentice->id],
+            ['manager_id', '=', auth()->user()->manager->id]
+        ])->first();
+
+        if(!$apprenticeManager)abort(403);
+
+        $apprenticeModuleData = ApprenticeModule::orderBy('start_date')
+            ->where('apprentice_id', $apprentice->id)
+            ->get();
+
+        return view('apprentice.show', compact('apprentice', 'apprenticeModuleData'));
     }
 
     /**

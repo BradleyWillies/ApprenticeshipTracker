@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Apprentice\DashboardController as ApprenticeDashboard;
+use App\Http\Controllers\Manager\ApprenticeController;
 use App\Http\Controllers\ApprenticeModuleController;
 use App\Http\Controllers\Manager\DashboardController as ManagerDashboard;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/module/{apprenticeModule}', [ApprenticeModuleController::class, 'edit'])->name('apprentice_module.edit');
     Route::patch('/module/{apprenticeModule}', [ApprenticeModuleController::class, 'update'])->name('apprentice_module.update');
     Route::delete('/module/{apprenticeModule}', [ApprenticeModuleController::class, 'destroy'])->name('apprentice_module.destroy');
+
+    Route::get('/apprentices/{apprentice}', [ApprenticeController::class, 'show'])->name('apprentices.show');
 });
 
 require __DIR__.'/auth.php';

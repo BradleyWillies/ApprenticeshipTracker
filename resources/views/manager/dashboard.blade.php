@@ -7,7 +7,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Apprentice Table') }}
+            {{ __('Apprentices') }}
         </h2>
     </x-slot>
 
@@ -36,7 +36,7 @@
                         <table class="table-auto">
                             <thead>
                             <tr>
-                                <th class="px-4 py-2">Apprentice Name</th>
+                                <th class="px-4 py-2">Apprentice</th>
                                 <th class="px-4 py-2">Programme Start Date</th>
                                 <th class="px-4 py-2">Programme End Date</th>
                             </tr>
@@ -44,7 +44,7 @@
                             <tbody>
                             @foreach ($apprentices as $apprentice)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $apprentice->user->name }}</td>
+                                    <td class="border px-4 py-2"><x-link href="{{ route('apprentices.show', $apprentice->id) }}">{{ $apprentice->user->name }}</x-link></td>
                                     <td class="border px-4 py-2">{{ $apprentice->getProgrammeStartDate() }}</td>
                                     <td class="border px-4 py-2">{{ $apprentice->getProgrammeEndDate() }}</td>
                                 </tr>

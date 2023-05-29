@@ -9,7 +9,7 @@
         <h2 class="font-semibold text-xl text-white leading-tight ">
             {{$apprentice->user->name}}
         </h2>
-        <x-link href="{{route('managerDashboard')}}" class="text-sm pt-2 inline-block">< Dashboard</x-link>
+        <x-link href="{{route('manager_dashboard')}}" class="text-sm pt-2 inline-block">< Dashboard</x-link>
     </x-slot>
 
     <x-apprentice-module-table :apprenticeModuleData="$apprenticeModuleData"/>

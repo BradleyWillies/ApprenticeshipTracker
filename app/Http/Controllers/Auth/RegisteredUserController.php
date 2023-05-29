@@ -46,7 +46,8 @@ class RegisteredUserController extends Controller
 
             if ($request->role == 'apprentice') {
                 $apprentice = Apprentice::create([
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
+                    'candidate_number' => $request->candidate_number
                 ]);
             } else {
                 $manager = Manager::create([
@@ -64,6 +65,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route($user->apprentice ? 'apprenticeDashboard' : 'managerDashboard');
+        return redirect()->route($user->apprentice ? 'apprentice_dashboard' : 'manager_dashboard');
     }
 }

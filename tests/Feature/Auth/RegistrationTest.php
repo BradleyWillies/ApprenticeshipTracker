@@ -22,6 +22,7 @@ class RegistrationTest extends TestCase
     {
         $response = $this->post('/register', [
             'role' => 'apprentice',
+            'candidate_number' => fake()->randomNumber(6, true),
             'name' => 'Test User',
             'email' => fake()->unique()->safeEmail(),
             'password' => 'password',
@@ -29,7 +30,8 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
+
+        $response->assertRedirect(route('apprentice_dashboard'));
     }
 
     public function test_new_manager_can_register(): void
@@ -43,6 +45,6 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
+        $response->assertRedirect(route('manager_dashboard'));
     }
 }

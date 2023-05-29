@@ -99,4 +99,19 @@ class ApprenticeController extends Controller
     {
         //
     }
+
+    /**
+     * Display a listing of apprentices associated with the current manager user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listManagerApprentices()
+    {
+        // ensure that the user is a manager, otherwise show the forbidden error screen
+        if(!auth()->user()->manager)abort(403);
+
+        $apprentices = auth()->user()->manager->apprentices ?? [];
+
+        return view('manager/apprentices', compact('apprentices'));
+    }
 }

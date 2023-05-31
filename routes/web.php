@@ -36,6 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/apprentices/{apprentice}', [ApprenticeController::class, 'show'])->name('apprentices.show');
 
     Route::get('/my-apprentices', [ApprenticeController::class, 'listManagerApprentices'])->name('manager_apprentices');
+    Route::get('/remove-apprentice/{apprentice}', [ApprenticeController::class, 'removeManagerApprentice'])->name('remove_manager_apprentice');
+    Route::get('/add-apprentice/{apprentice}', [ApprenticeController::class, 'addManagerApprentice'])->name('add_manager_apprentice');
 });
 
 require __DIR__.'/auth.php';

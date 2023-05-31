@@ -7,6 +7,7 @@ use App\Models\Apprentice;
 use App\Models\ApprenticeManager;
 use App\Models\ApprenticeModule;
 use App\Models\Manager;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -103,15 +104,46 @@ class ApprenticeController extends Controller
     /**
      * Display a listing of apprentices associated with the current manager user
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function listManagerApprentices()
     {
         // ensure that the user is a manager, otherwise show the forbidden error screen
         if(!auth()->user()->manager)abort(403);
 
-        $apprentices = auth()->user()->manager->apprentices ?? [];
+        $apprenticesOfManager = auth()->user()->manager->apprentices ?? [];
+        $allApprentices = Apprentice::all();
 
-        return view('manager/apprentices', compact('apprentices'));
+        return view('manager/apprentices', compact('apprenticesOfManager', 'allApprentices'));
+    }
+
+    /**
+     * Remove the given apprentice from being associated with the current manager
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeManagerApprentice(Apprentice $apprentice)
+    {
+        // ensure that the user is a manager, otherwise show the forbidden error screen
+        if(!auth()->user()->manager)abort(403);
+
+        ApprenticeManager::query()->where('apprentice_id', $apprentice->id)->delete();
+
+        return redirect()->route('manager_apprentices')->with('success', 'Apprentice "' . $apprentice->user->name . '" removed');
+    }
+
+    public function addManagerApprentice(Apprentice $apprentice)
+    {
+        // ensure that the user is a manager, otherwise show the forbidden error screen
+        if(!auth()->user()->manager)abort(403);
+
+        $notification = new Notification([
+            'apprentice_id' => $apprentice->id,
+            'manager_id' => auth()->user()->manager->id
+        ]);
+
+        $notification->save();
+
+        return redirect()->route('manager_apprentices')->with('success', 'Message sent to "' . $apprentice->user->name . '" for them to accept or decline your request');
     }
 }

@@ -28,7 +28,7 @@ class NotificationController extends Controller
 
         $notificationManagers = [];
 
-        if ($apprenticeNotifications->count() > 0 ) {
+        if ($apprenticeNotifications->count() > 0) {
             $managerIds = [];
             foreach ($apprenticeNotifications as $notification) {
                 if(!in_array($notification->manager_id, $managerIds)) $managerIds[] = $notification->manager_id;
@@ -44,10 +44,9 @@ class NotificationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Notification $notification)
+    public function update(Request $request)
     {
         // if accepted: assign the apprentice to the manager and update the notification
         if ($request->accepted) {

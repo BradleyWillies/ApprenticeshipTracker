@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddApprenticeRequest;
 use App\Models\Apprentice;
 use App\Models\ApprenticeManager;
 use App\Models\ApprenticeModule;
 use App\Models\Manager;
 use App\Models\Notification;
+use App\Models\User;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -132,10 +135,12 @@ class ApprenticeController extends Controller
         return redirect()->route('manager_apprentices')->with('success', 'Apprentice "' . $apprentice->user->name . '" removed');
     }
 
-    public function addManagerApprentice(Apprentice $apprentice)
+    public function addManagerApprentice(AddApprenticeRequest $request)
     {
         // ensure that the user is a manager, otherwise show the forbidden error screen
         if(!auth()->user()->manager)abort(403);
+
+        $apprentice = json_decode($request->apprentice);
 
         $notification = new Notification([
             'apprentice_id' => $apprentice->id,
@@ -144,6 +149,8 @@ class ApprenticeController extends Controller
 
         $notification->save();
 
-        return redirect()->route('manager_apprentices')->with('success', 'Message sent to "' . $apprentice->user->name . '" for them to accept or decline your request');
+        $user = User::find($apprentice->user_id);
+
+        return redirect()->route('manager_apprentices')->with('success', 'Message sent to "' . $user->name . '" for them to accept or decline your request.');
     }
 }

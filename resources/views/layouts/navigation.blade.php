@@ -28,7 +28,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ Auth::user()->apprentice ? route('apprentice_notifications') : route('manager_notifications') }}"
                                 active="{{ Auth::user()->apprentice ? request()->routeIs('apprentice_notifications') : request()->routeIs('manager_notifications') }}">
-                        {{ __('Notifications') }}
+                        {{ __('Notifications ') }}
                     </x-nav-link>
                 </div>
             </div>

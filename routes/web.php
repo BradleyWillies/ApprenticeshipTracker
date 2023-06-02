@@ -37,11 +37,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/my-apprentices', [ApprenticeController::class, 'listManagerApprentices'])->name('manager_apprentices');
     Route::get('/remove-apprentice/{apprentice}', [ApprenticeController::class, 'removeManagerApprentice'])->name('remove_manager_apprentice');
-    Route::get('/add-apprentice/{apprentice}', [ApprenticeController::class, 'addManagerApprentice'])->name('add_manager_apprentice');
+    Route::get('/add-apprentice', [ApprenticeController::class, 'addManagerApprentice'])->name('add_manager_apprentice');
 
     Route::get('/apprentice-notifications', [\App\Http\Controllers\Apprentice\NotificationController::class, 'index'])->name('apprentice_notifications');
     Route::get('/apprentice-notifications/update', [\App\Http\Controllers\Apprentice\NotificationController::class, 'update'])->name('update_notification');
     Route::get('/manager-notifications', [\App\Http\Controllers\Manager\NotificationController::class, 'index'])->name('manager_notifications');
+    Route::get('/apprentice-notifications/delete', [\App\Http\Controllers\Manager\NotificationController::class, 'delete'])->name('delete_notification');
 });
 
 require __DIR__.'/auth.php';

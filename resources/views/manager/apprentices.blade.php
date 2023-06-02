@@ -30,25 +30,29 @@
                                     <p class="mt-2">Select an apprentice to add to your account.</p>
                                     <p>A request will be sent to them.</p>
                                     <div class="flex mt-2">
-                                    <select name="">
-                                        @foreach ($allApprentices as $apprentice)
-                                            {{ $match = false }}
-                                            <!-- Check if the apprentice is already assigned to the manager -->
-                                            @foreach ($apprenticesOfManager as $apprenticeOfManager)
-                                                @if ($apprentice->user->id == $apprenticeOfManager->user->id)
-                                                    {{ $match = true }}
-                                                @endif
-                                            @endforeach
-                                            <!-- if the apprentice isn't already assigned to the manager add it as an option to the select box -->
-                                            @if ($match != true)
-                                                <option value="{{ $apprentice->user->id }}">{{ $apprentice->user->name }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                                        <form action="{{ route('add_manager_apprentice') }}">
+                                            @csrf
+                                            <select name="apprentice">
+                                                @foreach ($allApprentices as $apprentice)
+                                                    {{ $match = false }}
+                                                    <!-- Check if the apprentice is already assigned to the manager -->
+                                                    @foreach ($apprenticesOfManager as $apprenticeOfManager)
+                                                        @if ($apprentice->user->id == $apprenticeOfManager->user->id)
+                                                            {{ $match = true }}
+                                                        @endif
+                                                    @endforeach
+                                                    <!-- if the apprentice isn't already assigned to the manager add it as an option to the select box -->
+                                                    @if ($match != true)
+    {{--                                                <option value="{{ $apprentice->user->id }}">{{ $apprentice->user->name }}</option>--}}
+                                                        <option value="{{ $apprentice }}">{{ $apprentice->user->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
 
-                                        <a type="button" @click="isOpen = true" href="{{ route('add_manager_apprentice', $apprentice) }}" class="cursor-pointer mx-auto border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
-                                            Send request
-                                        </a>
+                                            <button type="submit" class="cursor-pointer mx-auto border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
+                                                Send request
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

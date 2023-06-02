@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Apprentice;
 use App\Http\Controllers\Controller;
 use App\Models\Apprentice;
 use App\Models\ApprenticeModule;
+use App\Models\Notification;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -20,6 +22,7 @@ class DashboardController extends Controller
         $apprenticeModuleData = ApprenticeModule::orderBy('start_date')
             ->where('apprentice_id', auth()->user()->apprentice->id)
             ->get();
+
 
         return view('apprentice/dashboard', compact('apprenticeModuleData'));
     }

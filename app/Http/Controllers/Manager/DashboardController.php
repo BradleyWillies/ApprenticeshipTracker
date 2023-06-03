@@ -7,6 +7,7 @@ use App\Models\Apprentice;
 use App\Models\ApprenticeModule;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -19,7 +20,14 @@ class DashboardController extends Controller
     {
         $apprentices = auth()->user()->manager->apprentices ?? [];
 
-        return view('manager/dashboard', compact('apprentices'));
+        $notificationCount = DB::table('notifications')
+            ->where('manager_id', '=', auth()->user()->manager->id)
+            ->where('apprentice_responded', '=', true)
+            ->groupBy('apprentice_id')
+            ->get()
+            ->count();
+
+        return view('manager/dashboard', compact('apprentices', 'notificationCount'));
     }
 
     /**

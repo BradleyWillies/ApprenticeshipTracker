@@ -37,7 +37,20 @@ class RegisterUserRequest extends FormRequest
                 'min:000000',
                 'max:999999',
                 'numeric'
-            ]
+            ],
+            'start_date' => [
+                'required_if:role,apprentice',
+                'sometimes',
+                'date',
+                'date_format:Y-m-d'
+            ],
+            'end_date' => [
+                'required_if:role,apprentice',
+                'sometimes',
+                'date',
+                'after_or_equal:start_date',
+                'date_format:Y-m-d'
+            ],
         ];
     }
 

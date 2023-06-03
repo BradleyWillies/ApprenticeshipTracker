@@ -12,6 +12,8 @@ class Apprentice extends Model
      protected $fillable = [
          'user_id',
          'candidate_number',
+         'start_date',
+         'end_date',
      ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

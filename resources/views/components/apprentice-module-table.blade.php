@@ -26,7 +26,7 @@
                             </td>
                             <td class="border px-4 py-2">{{ $apprenticeModule->grade }}</td>
                             <td class="border px-4 py-2">{{ $apprenticeModule->start_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $apprenticeModule->start_date)->format('d/m/Y') : '' }}</td>
-                            <td class="border px-4 py-2">{{ $apprenticeModule->start_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $apprenticeModule->end_date)->format('d/m/Y') : '' }}</td>
+                            <td class="border px-4 py-2">{{ $apprenticeModule->end_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $apprenticeModule->end_date)->format('d/m/Y') : '' }}</td>
                         </tr>
                     @endforeach
                     </tbody>

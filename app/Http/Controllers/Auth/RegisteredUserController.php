@@ -47,7 +47,9 @@ class RegisteredUserController extends Controller
             if ($request->role == 'apprentice') {
                 $apprentice = Apprentice::create([
                     'user_id' => $user->id,
-                    'candidate_number' => $request->candidate_number
+                    'candidate_number' => $request->candidate_number,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
                 ]);
             } else {
                 $manager = Manager::create([

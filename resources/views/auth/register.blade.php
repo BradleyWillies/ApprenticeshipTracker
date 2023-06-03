@@ -21,9 +21,24 @@
             <!-- Candidate Number -->
             <div x-show="role == 'apprentice'" class="mb-2">
                 <x-input-label for="candidate_number" :value="__('Candidate Number')" />
-                <x-text-input id="candidate_number" class="block mt-1 w-full" type="number" min="000000" max="999999" name="candidate_number" :value="old('candidate_number')" autofocus autocomplete="name" />
+                <x-text-input id="candidate_number" class="block mt-1 w-full" type="number" min="000000" max="999999" name="candidate_number" :value="old('candidate_number')" required autofocus />
                 <small class="text-white">6 digits, e.g. 701234</small>
                 <x-input-error :messages="$errors->get('candidate_number')" class="mt-2" />
+            </div>
+
+            <!-- Degree start and end dates -->
+            <div x-show="role == 'apprentice'" class="flex flex-wrap -mx-4 mb-2">
+                <div class="w-full md:w-1/2 px-4">
+                    <x-input-label for="start_date" value="Degree start date" />
+                    <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full" :value="old('start_date')" placeholder="dd/mm/yyyy" required autofocus />
+                    <x-input-error class="mt-2" :messages="$errors->get('start_date')" />
+                </div>
+
+                <div class="w-full md:w-1/2 px-4">
+                    <x-input-label for="end_date" value="Degree end date" />
+                    <x-text-input id="end_date" name="end_date" type="date" class="mt-1 block w-full" :value="old('end_date')" placeholder="dd/mm/yyyy"  autofocus />
+                    <x-input-error class="mt-2" :messages="$errors->get('end_date')" />
+                </div>
             </div>
 
             <!-- Name -->

@@ -19,6 +19,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // ensure that the user is an apprentice, otherwise show the forbidden error screen
+        if(!auth()->user()->apprentice)abort(403);
+
         $apprenticeModuleData = ApprenticeModule::orderBy('start_date')
             ->where('apprentice_id', auth()->user()->apprentice->id)
             ->get();

@@ -31,13 +31,13 @@ class Apprentice extends Model
         return $this->belongsToMany(Manager::class);
     }
 
-    public function getProgrammeStartDate(){
-        return $this->modules()->orderByDesc('pivot_start_date')->first()->pivot->start_date;
-    }
+//    public function getProgrammeStartDate(){
+//        return $this->modules()->orderByDesc('pivot_start_date')->first()->pivot->start_date;
+//    }
 
-    public function getProgrammeEndDate(){
-        return $this->modules()->orderByDesc('pivot_end_date')->first()->pivot->end_date;
-    }
+//    public function getProgrammeEndDate(){
+//        return $this->modules()->orderByDesc('pivot_end_date')->first()->pivot->end_date;
+//    }
 }
 
 

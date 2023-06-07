@@ -34,7 +34,15 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // if the user is an apprentice update their start and end dates
+        if ($request->user()->apprentice) {
+            $request->user()->apprentice->fill($request->validated());
+            $request->user()->apprentice->save();
+        }
+
+        return Redirect::route('profile.edit')
+            ->with('status', 'profile-updated')
+            ->with('success', 'Profile information updated');
     }
 
     /**

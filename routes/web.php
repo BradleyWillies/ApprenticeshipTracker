@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/modules', [ApprenticeDashboard::class, 'index'])->name('apprentice_dashboard');
     Route::get('/apprentices', [ManagerDashboard::class, 'index'])->name('manager_dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

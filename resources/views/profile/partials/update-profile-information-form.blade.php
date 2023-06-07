@@ -47,6 +47,23 @@
             @endif
         </div>
 
+        @if ($user->apprentice)
+            <!-- Degree start and end dates -->
+            <div class="flex flex-wrap -mx-4 mb-2">
+                <div class="w-full md:w-1/2 px-4">
+                    <x-input-label for="start_date" value="Degree start date" />
+                    <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full" :value="old('start_date', $user->apprentice->start_date)" placeholder="dd/mm/yyyy" required autofocus />
+                    <x-input-error class="mt-2" :messages="$errors->get('start_date')" />
+                </div>
+
+                <div class="w-full md:w-1/2 px-4">
+                    <x-input-label for="end_date" value="Degree end date" />
+                    <x-text-input id="end_date" name="end_date" type="date" class="mt-1 block w-full" :value="old('end_date', $user->apprentice->end_date)" placeholder="dd/mm/yyyy"  autofocus />
+                    <x-input-error class="mt-2" :messages="$errors->get('end_date')" />
+                </div>
+            </div>
+        @endif
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

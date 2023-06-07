@@ -18,6 +18,19 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'start_date' => [
+                'required_if:role,apprentice',
+                'sometimes',
+                'date',
+                'date_format:Y-m-d'
+            ],
+            'end_date' => [
+                'required_if:role,apprentice',
+                'sometimes',
+                'date',
+                'after_or_equal:start_date',
+                'date_format:Y-m-d'
+            ],
         ];
     }
 }

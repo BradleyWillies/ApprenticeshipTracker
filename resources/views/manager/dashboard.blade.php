@@ -36,16 +36,16 @@
                         <thead>
                         <tr>
                             <th class="px-4 py-2">Apprentice</th>
-                            <th class="px-4 py-2">Programme Start Date</th>
-                            <th class="px-4 py-2">Programme End Date</th>
+                            <th class="px-4 py-2">Degree Start Date</th>
+                            <th class="px-4 py-2">Degree End Date</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($apprentices as $apprentice)
                             <tr>
                                 <td class="border px-4 py-2"><x-link href="{{ route('apprentices.show', $apprentice->id) }}">{{ $apprentice->user->name }}</x-link></td>
-                                <td class="border px-4 py-2">{{ $apprentice->getProgrammeStartDate() }}</td>
-                                <td class="border px-4 py-2">{{ $apprentice->getProgrammeEndDate() }}</td>
+                                <td class="border px-4 py-2">{{ $apprentice->start_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $apprentice->start_date)->format('d/m/Y') : '-' }}</td>
+                                <td class="border px-4 py-2">{{ $apprentice->end_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $apprentice->end_date)->format('d/m/Y') : '-' }}</td>
                             </tr>
                         @endforeach
                         </tbody>

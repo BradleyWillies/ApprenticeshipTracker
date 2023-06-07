@@ -18,6 +18,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // ensure that the user is an apprentice, otherwise show the forbidden error screen
+        if(!auth()->user()->manager)abort(403);
+
         $apprentices = auth()->user()->manager->apprentices ?? [];
 
         $notificationCount = DB::table('notifications')

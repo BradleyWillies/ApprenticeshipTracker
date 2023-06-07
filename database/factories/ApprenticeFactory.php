@@ -19,9 +19,12 @@ class ApprenticeFactory extends Factory
     public function definition()
     {
         $user = User::factory()->create();
+        $startDate = fake()->date;
         return [
             'user_id' => $user->id,
             'candidate_number' => fake()->randomNumber(6, true),
+            'start_date' => $startDate,
+            'end_date' => fake()->dateTimeBetween($startDate, '+4 years')->format('Y-m-d'),
         ];
     }
 }

@@ -20,9 +20,13 @@ class RegistrationTest extends TestCase
 
     public function test_new_apprentice_can_register(): void
     {
+        $startDate = fake()->date;
+
         $response = $this->post('/register', [
             'role' => 'apprentice',
             'candidate_number' => fake()->randomNumber(6, true),
+            'start_date' => $startDate,
+            'end_date' => fake()->dateTimeBetween($startDate, '+4 years')->format('Y-m-d'),
             'name' => 'Test User',
             'email' => fake()->unique()->safeEmail(),
             'password' => 'password',

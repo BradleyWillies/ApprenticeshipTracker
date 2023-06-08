@@ -11,6 +11,19 @@
         </h2>
     </x-slot>
 
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-2">
+                <div class="sm:px-20 border-gray-200">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">Invalid input: </strong>
+                        <span class="block sm:inline">{{ $error }}</span>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
+
     <div class="py-2 text-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="sm:px-20 border-gray-200">
@@ -31,15 +44,15 @@
                                 <tr>
                                     <td>
                                         <label>
-                                            <input type="checkbox" name="modules[]" value="{{ $module->id }}">
+                                            <input type="checkbox" name="modules[]" value="{{ $module->id }}" @if (array_search($module->id, old('modules') ?? []) !== false) checked @endif>
                                             {{ $module->code . ' - ' . $module->title }}
                                         </label>
                                     </td>
                                     <td>
-                                        <x-text-input id="start_date" name="start_dates[{{ $module->id }}]" type="date" class="mt-1 block w-full" :value="old('start_date')" placeholder="dd/mm/yyyy" autofocus />
+                                        <x-text-input id="start_date" name="start_dates[{{ $module->id }}]" type="date" class="mt-1 block w-full" value="{{ old('start_dates.' . $module->id) }}" placeholder="dd/mm/yyyy" autofocus />
                                     </td>
                                     <td>
-                                        <x-text-input id="start_date" name="end_dates[{{ $module->id }}]" type="date" class="mt-1 block w-full" :value="old('start_date')" placeholder="dd/mm/yyyy" autofocus />
+                                        <x-text-input id="start_date" name="end_dates[{{ $module->id }}]" type="date" class="mt-1 block w-full" value="{{ old('end_dates.' . $module->id) }}" placeholder="dd/mm/yyyy" autofocus />
                                     </td>
                                 </tr>
                             @endforeach

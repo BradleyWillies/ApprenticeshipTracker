@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddApprenticeModulesRequest;
 use App\Http\Requests\ApprenticeModuleRequest;
 use App\Models\ApprenticeModule;
 use App\Models\Module;
@@ -45,16 +46,16 @@ class ApprenticeModuleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(AddApprenticeModulesRequest $request)
     {
         // ensure that the current user is an apprentice otherwise show unauthorised error
         if(!auth()->user()->apprentice)abort(403);
 
-        $selectedModules = $request->input('modules', []);
-        $startDates = $request->input('start_dates', []);
-        $endDates = $request->input('end_dates', []);
+        $selectedModules = $request->input('modules');
+        $startDates = $request->input('start_dates');
+        $endDates = $request->input('end_dates');
 
         foreach ($selectedModules as $moduleId) {
             $module = Module::find($moduleId);

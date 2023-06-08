@@ -1,7 +1,7 @@
 @props(['isInteractive' => false, 'apprenticeModuleData'])
-<div class="py-12 text-white">
+<div class="py-2 text-white">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="p-6 sm:px-20 border-gray-200">
+        <div class="sm:px-20 border-gray-200">
             <div class="mt-8 text-2xl">
                 <table class="table-auto mx-auto">
                     <thead>

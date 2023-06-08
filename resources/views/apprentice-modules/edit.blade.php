@@ -37,17 +37,31 @@
                         <div class="flex flex-wrap -mx-4">
                             <div class="w-full md:w-1/2 px-4">
                                 <x-input-label for="grade" value="Grade" />
-                                <x-text-input id="grade" name="grade" type="number" class="mt-1 block w-full" :value="old('grade', $apprenticeModule->grade)" min="0" max="100" required autofocus />
+                                <x-text-input id="grade" name="grade" type="number" class="mt-1 block w-full" :value="old('grade', $apprenticeModule->grade)" min="0" max="100" autofocus />
                                 <x-input-error class="mt-2" :messages="$errors->get('grade')" />
                             </div>
                         </div>
 
                         <div class="flex items-center gap-4">
-                            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                            <button type="submit" class="bg-green-500 text-black font-bold rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
+                                Save
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+            <form method="post" action="{{ route('apprentice_module.destroy', $apprenticeModule) }}">
+                @csrf
+                @method('delete')
+                <button type="submit" class="bg-red-600 text-black font-bold rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-700 focus:outline-none focus:shadow-outline">
+                    Delete
+                </button>
+            </form>
         </div>
     </div>
 

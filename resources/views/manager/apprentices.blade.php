@@ -12,7 +12,7 @@
                     <div class="flex flex-col items-center">
                         <div x-data="{ isOpen: false }" class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                             <!-- Button to open the add apprentice modal -->
-                            <button type="button" @click="isOpen = true" class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
+                            <button type="button" @click="isOpen = true" class="border border-green-500 bg-green-500 text-black font-bold rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
                                 Add apprentice
                             </button>
 
@@ -49,7 +49,7 @@
                                                 @endforeach
                                             </select>
 
-                                            <button type="submit" class="cursor-pointer mx-auto border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
+                                            <button type="submit" class="cursor-pointer mx-auto border border-green-500 bg-green-500 text-black font-bold rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
                                                 Send request
                                             </button>
                                         </form>

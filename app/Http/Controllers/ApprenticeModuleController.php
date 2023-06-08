@@ -4,10 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ApprenticeModuleRequest;
 use App\Models\ApprenticeModule;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
 class ApprenticeModuleController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // ensure that the current user is an apprentice otherwise show unauthorised error
+        if(!auth()->user()->apprentice)abort(403);
+
+        // get modules which aren't already associated with the current apprentice
+        $modules = Module::whereNotIn('id', function ($query) {
+            $query->select('module_id')
+                ->from('apprentice_module')
+                ->where('apprentice_id', auth()->user()->apprentice->id);
+        })
+            ->orderBy('title')
+            ->get();
+
+        return view('apprentice-modules.show', compact('modules'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +49,22 @@ class ApprenticeModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // ensure that the current user is an apprentice otherwise show unauthorised error
+        if(!auth()->user()->apprentice)abort(403);
+
+        $selectedModules = $request->input('modules', []);
+        $startDates = $request->input('start_dates', []);
+        $endDates = $request->input('end_dates', []);
+
+        foreach ($selectedModules as $moduleId) {
+            $module = Module::find($moduleId);
+            auth()->user()->apprentice->modules()->attach($module, [
+                'start_date' => $startDates[$moduleId],
+                'end_date' => $endDates[$moduleId],
+            ]);
+        }
+
+        return redirect()->route('apprentice_dashboard')->with('success', 'Modules added');
     }
 
     /**
@@ -81,7 +119,11 @@ class ApprenticeModuleController extends Controller
      */
     public function destroy(ApprenticeModule $apprenticeModule)
     {
-        //
+        $this->checkAccess($apprenticeModule);
+
+        $apprenticeModule->delete();
+
+        return redirect()->route('apprentice_dashboard')->with('success', 'Module removed');
     }
 
     private function checkAccess(ApprenticeModule $apprenticeModule):void

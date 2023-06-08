@@ -16,7 +16,7 @@ class ApprenticeModuleRequest extends FormRequest
         return [
             'start_date' => 'nullable|date|date_format:Y-m-d',
             'end_date' => 'nullable|date|after_or_equal:start_date|date_format:Y-m-d',
-            'grade' => 'required|numeric|min:0|max:100',
+            'grade' => 'nullable|numeric|min:0|max:100',
         ];
     }
 }

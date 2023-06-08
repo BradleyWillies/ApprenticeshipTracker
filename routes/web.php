@@ -33,6 +33,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/module/{apprenticeModule}', [ApprenticeModuleController::class, 'edit'])->name('apprentice_module.edit');
     Route::patch('/module/{apprenticeModule}', [ApprenticeModuleController::class, 'update'])->name('apprentice_module.update');
     Route::delete('/module/{apprenticeModule}', [ApprenticeModuleController::class, 'destroy'])->name('apprentice_module.destroy');
+    Route::get('/add-modules', [ApprenticeModuleController::class, 'index'])->name('apprentice_module.index');
+    Route::post('/add-modules', [ApprenticeModuleController::class, 'store'])->name('apprentice_module.store');
+
 
     Route::get('/apprentices/{apprentice}', [ApprenticeController::class, 'show'])->name('apprentices.show');
 

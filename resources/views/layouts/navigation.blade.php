@@ -24,6 +24,13 @@
                             {{ __('Apprentices') }}
                         </x-nav-link>
                     </div>
+                @else
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('apprentice_module.index') }}"
+                                    active="{{ request()->routeIs('apprentice_module.index') }}">
+                            {{ __('Add Modules') }}
+                        </x-nav-link>
+                    </div>
                 @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ Auth::user()->apprentice ? route('apprentice_notifications') : route('manager_notifications') }}"

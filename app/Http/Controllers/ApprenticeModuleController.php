@@ -7,6 +7,7 @@ use App\Http\Requests\ApprenticeModuleRequest;
 use App\Models\ApprenticeModule;
 use App\Models\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ApprenticeModuleController extends Controller
 {
@@ -53,6 +54,14 @@ class ApprenticeModuleController extends Controller
         // ensure that the current user is an apprentice otherwise show unauthorised error
         if(!auth()->user()->apprentice)abort(403);
 
+        // create a validator using the AddApprenticeModulesRequest rules and custom error messages
+        $validator = Validator::make($request->all(), $request->rules(), $request->messages());
+
+        // if the validator finds any errors, return these to the view
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $selectedModules = $request->input('modules');
         $startDates = $request->input('start_dates');
         $endDates = $request->input('end_dates');
@@ -66,6 +75,14 @@ class ApprenticeModuleController extends Controller
         }
 
         return redirect()->route('apprentice_dashboard')->with('success', 'Modules added');
+    }
+
+    public function messages()
+    {
+        return [
+            'modules.required' => 'At least one module must be selected.',
+            'end_dates.*.after_or_equal' => 'The end date must be after or equal to the start date.',
+        ];
     }
 
     /**

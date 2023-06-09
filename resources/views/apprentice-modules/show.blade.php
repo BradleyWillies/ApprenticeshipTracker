@@ -52,7 +52,7 @@
                                         <x-text-input id="start_date" name="start_dates[{{ $module->id }}]" type="date" class="mt-1 block w-full" value="{{ old('start_dates.' . $module->id) }}" placeholder="dd/mm/yyyy" autofocus />
                                     </td>
                                     <td>
-                                        <x-text-input id="start_date" name="end_dates[{{ $module->id }}]" type="date" class="mt-1 block w-full" value="{{ old('end_dates.' . $module->id) }}" placeholder="dd/mm/yyyy" autofocus />
+                                        <x-text-input id="end_date" name="end_dates[{{ $module->id }}]" type="date" class="mt-1 block w-full" value="{{ old('end_dates.' . $module->id) }}" placeholder="dd/mm/yyyy" autofocus />
                                     </td>
                                 </tr>
                             @endforeach

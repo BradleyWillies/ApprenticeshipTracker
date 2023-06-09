@@ -44,8 +44,8 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-4">
-                            <button type="submit" class="bg-green-500 text-black font-bold rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
+                        <div class="flex items-center justify-between">
+                            <button type="submit" class="ml-auto bg-green-500 text-black font-bold rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
                                 Save
                             </button>
                         </div>

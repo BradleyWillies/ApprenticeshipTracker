@@ -26,15 +26,8 @@ class DashboardController extends Controller
             ->where('apprentice_id', auth()->user()->apprentice->id)
             ->get();
 
-        $notificationCount = DB::table('notifications')
-            ->where('apprentice_id', '=', auth()->user()->apprentice->id)
-            ->where('apprentice_responded', '=', false)
-            ->groupBy('manager_id')
-            ->get()
-            ->count();
 
-
-        return view('apprentice/dashboard', compact('apprenticeModuleData', 'notificationCount'));
+        return view('apprentice/dashboard', compact('apprenticeModuleData'));
     }
 
     /**

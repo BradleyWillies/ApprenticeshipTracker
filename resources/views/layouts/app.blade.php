@@ -16,12 +16,7 @@
     </head>
     <body class="font-sans antialiased dark">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @props(['notificationCount'])
-            @isset($notificationCount)
-                @include('layouts.navigation', ['$notificationCount' => $notificationCount])
-            @else
-                @include('layouts.navigation')
-            @endisset
+            @include('layouts.navigation')
 
             <!-- Page Heading -->
             @if (isset($header))

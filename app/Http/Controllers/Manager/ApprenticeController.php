@@ -12,6 +12,7 @@ use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class ApprenticeController extends Controller
@@ -115,7 +116,9 @@ class ApprenticeController extends Controller
         if(!auth()->user()->manager)abort(403);
 
         $apprenticesOfManager = auth()->user()->manager->apprentices ?? [];
-        $allApprentices = Apprentice::all();
+        $allApprentices = Apprentice::whereDoesntHave('notifications', function($query){
+            $query->where('manager_id', auth()->user()->manager->id);
+        })->get();
 
         return view('manager/apprentices', compact('apprenticesOfManager', 'allApprentices'));
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Apprentice;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class NotificationController extends Controller

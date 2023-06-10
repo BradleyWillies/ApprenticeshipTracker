@@ -8,6 +8,7 @@ use App\Models\Manager;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class NotificationController extends Controller
 {
@@ -48,6 +49,11 @@ class NotificationController extends Controller
      */
     public function update(Request $request)
     {
+        $notification = Notification::where([
+            'apprentice_id' => Auth::user()->apprentice->id,
+            'manager_id' => $request->managerId,
+        ])->first();
+
         // if accepted: assign the apprentice to the manager and update the notification
         if ($request->accepted) {
             $apprenticeManager = new ApprenticeManager;
@@ -55,23 +61,15 @@ class NotificationController extends Controller
             $apprenticeManager->manager_id = $request->managerId;
             $apprenticeManager->save();
 
-            Notification::where([
-                'apprentice_id' => Auth::user()->apprentice->id,
-                'manager_id' => $request->managerId,
-            ])->update([
-                'apprentice_responded' => true,
-                'apprentice_accepted' => true
-            ]);
+            $notification->apprentice_responded = true;
+            $notification->apprentice_accepted = true;
+            $notification->save();
         }
         // if not accepted: just update the notification
         else {
-            Notification::where([
-                'apprentice_id' => Auth::user()->apprentice->id,
-                'manager_id' => $request->managerId,
-            ])->update([
-                'apprentice_responded' => true,
-                'apprentice_accepted' => false
-            ]);
+            $notification->apprentice_responded = true;
+            $notification->apprentice_accepted = false;
+            $notification->save();
         }
 
         return redirect()->route('apprentice_notifications')->with('success', 'Manager ' . ($request->accepted ? 'accepted' : 'rejected'));

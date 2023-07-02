@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Manager;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -13,7 +14,8 @@ class ProfileTest extends TestCase
 
     public function test_profile_page_is_displayed(): void
     {
-        $user = User::factory()->create();
+        $manager = Manager::factory()->create();
+        $user = $manager->user;
 
         $response = $this
             ->actingAs($user)

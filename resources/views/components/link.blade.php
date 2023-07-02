@@ -1,7 +1,7 @@
 @props(['active'])
 
 @php
-$classes = 'text-white dark:hover:text-gray-400'
+$classes = 'underline text-blue-400 hover:text-blue-600'
 @endphp
 
 <a {{ $attributes->merge(['class' => $classes]) }}>

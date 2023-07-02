@@ -25,32 +25,35 @@
     <div class="h-full">
       <!--Nav-->
       <div class="w-full container mx-auto">
-          @if (Route::has('login'))
-              <div class="hidden fixed top-0 right-0 px-10 py-4 sm:block ">
-                  @auth
-                      <a href="{{ Auth::user()->apprentice ? route('apprentice_dashboard') : route('manager_dashboard') }}" class="underline ">Dashboard</a>
-                  @else
-                      <a href="{{ route('login') }}" class="underline">Log in</a>
 
-                      @if (Route::has('register'))
-                          <a href="{{ route('register') }}" class="ml-4 underline">Register</a>
-                      @endif
-                  @endauth
-              </div>
-          @endif
       </div>
 
       <!--Main-->
       <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
-        <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-          <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
-              Apprenticeship Tracker
-          </h1>
-          <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-            Keep track of progress throughout your degree while providing sight to your managers!
-          </p>
-          <img src="{{ asset('images/apprentice-dashboard.png') }}" alt="Apprentice Dashboard">
+        <div class="flex space-x-8 w-full justify-center lg:items-start overflow-y-hidden">
+            <div>
+                <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+                    Apprenticeship Tracker
+                </h1>
+                <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
+                    Keep track of progress throughout your degree while providing sight to your managers!
+                </p>
+                @if (Route::has('login'))
+                    <div class="text-white text-xl py-4 sm:block ">
+                        @auth
+                            <a href="{{ Auth::user()->apprentice ? route('apprentice_dashboard') : route('manager_dashboard') }}" class="bg-purple-500 px-4 py-1 hover:bg-purple-600">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="bg-purple-500 px-4 py-1 hover:bg-purple-600">Log in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 bg-purple-500 px-4 py-1 hover:bg-purple-600">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </div>
+          <img src="{{ asset('images/apprentice-dashboard.png') }}" alt="Apprentice Dashboard" class="rounded w-1/2" >
         </div>
       </div>
     </div>

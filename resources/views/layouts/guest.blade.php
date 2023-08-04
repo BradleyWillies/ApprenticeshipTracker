@@ -18,6 +18,11 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
 
             @if (Route::has('login'))
+                <div class="hidden fixed top-0 left-0 px-6 py-4 sm:block">
+                    <a href="{{ route('splashscreen') }}">
+                        <img src="{{ asset('images/apprenticeship-tracker-logo.png') }}" alt="Apprentice Dashboard" class="rounded w-1/5">
+                    </a>
+                </div>
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ Auth::user()->apprentice ? route('apprentice_dashboard') : route('manager_dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>

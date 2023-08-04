@@ -24,7 +24,7 @@ if (env('APP_ENV') === 'production') {
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('splashscreen');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/modules', [ApprenticeDashboard::class, 'index'])->name('apprentice_dashboard');

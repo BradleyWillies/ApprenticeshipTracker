@@ -61,11 +61,12 @@ Open your web browser and navigate to http://127.0.0.1:8000/ to access the appli
 The application web address for the Development Server should be provided next to APP_URL when you execute "npm run dev".
 
 4. Login with seeded user accounts:\
-Find the emails of users in the "users" database table, and the default password is 11111111
+Find the emails of users in the "users" database table, and the default password is 12345678
 
 5. Run all Laravel tests:\
 Start a new console in the project folder directory.\
-`php artisan test`
+`php artisan test`\
+This will also import some example modules for user id 6, which is an apprentice.
 
 
 ## Contact

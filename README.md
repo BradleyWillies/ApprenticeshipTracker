@@ -21,21 +21,30 @@ Before you begin, make sure you have the following software installed:
 `git clone https://github.com/BradleyWillies/ApprenticeshipTracker.git`\
 cd to the project folder
 
-2. Install Dependencies:\
+2. Install Composer dependencies:\
 `composer install`
 
-3. Configure Environment:\
+3. Install npm packages:\
+`npm install`
+
+4. Configure Environment:\
 Use the existing environment variables or copy the .env.example file to create a new .env file:\
 `cp .env.example .env`\
-Open .env in a text editor and update the database settings according to your local environment (database name, username, password).
+Open .env in a text editor and update the database settings according to your local environment (database name, username, password).\
+Change the 'APP_URL' to '//127.0.0.1:8000'.
 
-4. Create the Database:\
-`php artisan db:create`
+5. Generate the key for the environment file, it will define the value for 'APP_KEY':\
+`php artisan key:generate`
 
-5. Run Migrations:\
-`php artisan migrate`
+6. Start the MySQL database:\
+In the XAMPP controller click "Start" next to MySQL.\
+You can use any local database tool to view and edit the database, e.g. MySQL Workbench.
 
-6. Seed the Database (Optional):\
+7. Run Migrations:\
+`php artisan migrate`\
+Type 'yes' when it asks to create the database with the name you provided in your .env file.
+
+8. Seed the Database (Optional):\
 `php artisan db:seed`
 
 
@@ -44,20 +53,18 @@ Open .env in a text editor and update the database settings according to your lo
 `php artisan serve`
 
 2. Compile assets for the Development Server:\
+Start a new console in the project folder directory.\
 `npm run dev`
 
-3. Start the MySQL database:\
-In the XAMPP controller click "Start" next to MySQL.\
-You can use any local database tool to view and edit the database, e.g. MySQL Workbench.
-
-4. Access the Application:\
+3. Access the Application:\
 Open your web browser and navigate to http://127.0.0.1:8000/ to access the application.\
 The application web address for the Development Server should be provided next to APP_URL when you execute "npm run dev".
 
-5. Login with seeded user accounts:\
+4. Login with seeded user accounts:\
 Find the emails of users in the "users" database table, and the default password is 11111111
 
-6. Run all Laravel tests:\
+5. Run all Laravel tests:\
+Start a new console in the project folder directory.\
 `php artisan test`
 
 

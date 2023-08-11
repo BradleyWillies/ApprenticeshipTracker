@@ -73,7 +73,7 @@ class ProfileTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->delete('/profile', [
-                'password' => '11111111',
+                'password' => '12345678',
             ]);
 
         $response
